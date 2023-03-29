@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://drye8hsc2dvvh"]
+
+[ext_resource type="Script" path="res://Pipes/Scripts/MovePipes.gd" id="1_nw4a0"]
+[ext_resource type="Texture2D" uid="uid://cn3xryg3cn00" path="res://Game Objects/pipe-green.png" id="2_ftax4"]
+[ext_resource type="Script" path="res://Pipes/Scripts/AddPoint.gd" id="3_urgv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d04l3"]
+size = Vector2(44, 536.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuvpa"]
+size = Vector2(64, 181)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+z_index = -1
+collision_layer = 2
+script = ExtResource("1_nw4a0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 365.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_d04l3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, -883)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_d04l3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 140)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ftax4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -650)
+rotation = -3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("2_ftax4")
+
+[node name="ScoreArea" type="Area2D" parent="."]
+collision_layer = 4
+script = ExtResource("3_urgv2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
+position = Vector2(3, -253)
+shape = SubResource("RectangleShape2D_wuvpa")

@@ -1,0 +1,261 @@
+[gd_scene load_steps=30 format=3 uid="uid://c66ntgtprykwq"]
+
+[ext_resource type="Texture2D" uid="uid://b3omg8ia71d5w" path="res://Game Objects/background-day.png" id="1_kc5ae"]
+[ext_resource type="Texture2D" uid="uid://c1xa3ffnptk0b" path="res://Game Objects/base.png" id="2_2h2fs"]
+[ext_resource type="PackedScene" uid="uid://06sjx6hpied" path="res://Player/Escenas/player.tscn" id="2_s0daf"]
+[ext_resource type="Script" path="res://UI/Scripts/AutoScrollBackground.gd" id="3_8gxl4"]
+[ext_resource type="Script" path="res://Pipes/Scripts/SpawnPipes.gd" id="3_66a74"]
+[ext_resource type="Texture2D" uid="uid://chc2l7c75ptiw" path="res://UI/gameover.png" id="4_ffh5l"]
+[ext_resource type="Script" path="res://UI/Scripts/UpdateScore.gd" id="6_2ws5a"]
+[ext_resource type="PackedScene" uid="uid://cidotkco2jfvw" path="res://ground.tscn" id="7_eq7yu"]
+[ext_resource type="Script" path="res://UI/Scripts/PanelGameOver.gd" id="7_wgick"]
+[ext_resource type="Script" path="res://UI/Scripts/RestartGame.gd" id="9_7qkmy"]
+[ext_resource type="AudioStream" uid="uid://dbunvasyg6k6r" path="res://Sound Efects/die.ogg" id="9_e82ui"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="9_lefjy"]
+[ext_resource type="Texture2D" uid="uid://b7wv5jnyg4q8f" path="res://UI/message.png" id="10_41nrb"]
+[ext_resource type="Script" path="res://StartGame.gd" id="11_op5gk"]
+[ext_resource type="Script" path="res://Managers/SoundManager.gd" id="14_tmdoj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_is8cl"]
+font_size = 68
+outline_size = 5
+outline_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_obk7d"]
+resource_name = "popup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2.14355),
+"update": 2,
+"values": [Vector2(20, 20), Vector2(550, 500)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyq0u"]
+_data = {
+"popup": SubResource("Animation_obk7d")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4i8s5"]
+
+[sub_resource type="Theme" id="Theme_vv37x"]
+/styles/Text = SubResource("StyleBoxTexture_4i8s5")
+
+[sub_resource type="SystemFont" id="SystemFont_or5fy"]
+font_weight = 500
+font_stretch = 150
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e07u6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6uu1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7bxwb"]
+modulate_color = Color(0.988235, 0.627451, 0.282353, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vbuqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y5eqx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3f30"]
+font_size = 34
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_2as8j"]
+resource_name = "sasasdasda"
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq85t"]
+size = Vector2(1000, 2000)
+
+[node name="Nivel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Player" parent="." instance=ExtResource("2_s0daf")]
+position = Vector2(0, 3)
+
+[node name="SpawnerTuberias" type="Node2D" parent="."]
+position = Vector2(608, 0)
+script = ExtResource("3_66a74")
+
+[node name="Timer" type="Timer" parent="SpawnerTuberias"]
+process_callback = 0
+one_shot = true
+autostart = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(-417, -202)
+fit_margin = 0.0
+clear_margin = 0.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasGroup"]
+follow_viewport_scale = 0.0
+script = ExtResource("3_8gxl4")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasGroup/ParallaxBackground"]
+motion_mirroring = Vector2(288, 0)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasGroup/ParallaxBackground/ParallaxLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 581.0
+offset_top = -400.0
+offset_right = 869.0
+offset_bottom = 300.0
+grow_horizontal = 2
+texture = ExtResource("1_kc5ae")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasGroup/ParallaxBackground/ParallaxLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.0
+offset_top = -400.0
+offset_right = 297.0
+offset_bottom = 300.0
+grow_horizontal = 2
+texture = ExtResource("1_kc5ae")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasGroup/ParallaxBackground/ParallaxLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 864.0
+offset_top = -400.0
+offset_right = 1152.0
+offset_bottom = 300.0
+grow_horizontal = 2
+texture = ExtResource("1_kc5ae")
+expand_mode = 1
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasGroup/ParallaxBackground/ParallaxLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -288.0
+offset_top = -400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+texture = ExtResource("1_kc5ae")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasGroup/ParallaxBackground/ParallaxLayer"]
+z_index = 3
+offset_left = -579.0
+offset_top = 289.0
+offset_right = 1948.0
+offset_bottom = 430.0
+texture = ExtResource("2_2h2fs")
+stretch_mode = 1
+
+[node name="Score" type="Label" parent="CanvasGroup"]
+offset_left = 399.0
+offset_top = -119.0
+offset_right = 447.0
+offset_bottom = -23.0
+text = "0"
+label_settings = SubResource("LabelSettings_is8cl")
+script = ExtResource("6_2ws5a")
+
+[node name="PanelGameOver" type="Panel" parent="CanvasGroup"]
+modulate = Color(1, 1, 1, 0)
+clip_contents = true
+offset_left = 177.0
+offset_top = -24.0
+offset_right = 727.0
+offset_bottom = 476.0
+script = ExtResource("7_wgick")
+
+[node name="GameOver" type="TextureRect" parent="CanvasGroup/PanelGameOver"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 17.0
+offset_right = 356.0
+offset_bottom = 59.0
+texture = ExtResource("4_ffh5l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasGroup/PanelGameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_pyq0u")
+}
+script = ExtResource("9_lefjy")
+
+[node name="RestartButton" type="Button" parent="CanvasGroup/PanelGameOver"]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 345.0
+offset_right = 347.0
+offset_bottom = 402.0
+theme = SubResource("Theme_vv37x")
+theme_override_fonts/font = SubResource("SystemFont_or5fy")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e07u6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y6uu1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7bxwb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vbuqi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y5eqx")
+disabled = true
+text = "Restart"
+script = ExtResource("9_7qkmy")
+
+[node name="HighScore" type="Label" parent="CanvasGroup/PanelGameOver"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 150.0
+offset_right = 378.0
+offset_bottom = 213.0
+text = "High Score:"
+label_settings = SubResource("LabelSettings_n3f30")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_2as8j")
+
+[node name="Advice" type="TextureRect" parent="CanvasGroup"]
+offset_left = 344.0
+offset_top = 216.0
+offset_right = 528.0
+offset_bottom = 483.0
+texture = ExtResource("10_41nrb")
+script = ExtResource("11_op5gk")
+
+[node name="Ground" parent="." instance=ExtResource("7_eq7yu")]
+position = Vector2(-581, 292)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_e82ui")
+pitch_scale = 1.11
+max_polyphony = 9
+script = ExtResource("14_tmdoj")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(-6, 4)
+shape = SubResource("RectangleShape2D_xq85t")
+action = "apretado"

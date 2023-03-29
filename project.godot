@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Flappy Birdoooo"
+run/main_scene="res://nivel.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+
+[autoload]
+
+GameManager="*res://Managers/GameManager.gd"
+
+[display]
+
+window/size/viewport_width=648
+window/size/viewport_height=1200
+window/size/mode=2
+window/size/borderless=true
+window/handheld/orientation=1
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+
+[input]
+
+apretado={
+"deadzone": 0.5,
+"events": []
+}
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="pipes"
+2d_physics/layer_3="score"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
