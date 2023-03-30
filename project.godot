@@ -13,6 +13,8 @@ config_version=5
 config/name="Flappy Birdoooo"
 run/main_scene="res://nivel.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+boot_splash/bg_color=Color(0.847059, 0.47451, 0.313726, 1)
+boot_splash/image="res://Game Objects/yellowbird-upflap.png"
 
 [autoload]
 
@@ -22,7 +24,7 @@ GameManager="*res://Managers/GameManager.gd"
 
 window/size/viewport_width=648
 window/size/viewport_height=1200
-window/size/mode=2
+window/size/mode=3
 window/size/borderless=true
 window/handheld/orientation=1
 window/stretch/mode="viewport"

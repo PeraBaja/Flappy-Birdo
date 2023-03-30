@@ -11,10 +11,10 @@ var isJumping
 func _ready():
 	GameManager.PlayerDie.connect(on_player_died)
 
-func _process(delta):
+func _process(_delta):
 	GameManager.GetPlayerYVelocity.emit(velocity.y)
 	isJumping = Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("apretado")
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(isJumping == true && !is_player_dead):
 			is_game_started  = true
 			velocity.y = -jumpForce

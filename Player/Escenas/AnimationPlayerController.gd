@@ -6,8 +6,6 @@ var animationNode = get("parameters/playback")
 func _ready():
 	GameManager.GetPlayerYVelocity.connect(on_get_player_Y_velocity)
 	animationNode.travel("player_actions") 
-func _process(delta):
-	pass
 	
 func on_get_player_Y_velocity(Yvelocity : float):
 	playerVelocity =  lerp(0.0, Yvelocity * 0.01, 0.4) 

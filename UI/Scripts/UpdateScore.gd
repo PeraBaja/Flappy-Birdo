@@ -7,3 +7,11 @@ func _ready():
 func UpdateScore():
 	score += 1 
 	text = "%d" % score
+	UpdateHighscore()
+
+
+func UpdateHighscore():
+	var savedGame = ResourceLoader.load("res://Save.tres") as Save_Game
+	if(score > savedGame.highscore):
+		savedGame.highscore = score
+		ResourceSaver.save(savedGame, "res://Save.tres")
